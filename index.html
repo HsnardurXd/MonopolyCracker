@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Scrolling Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #000;
+            color: #00ff00; /* Green text color */
+            position: relative;
+        }
+
+        .bubble {
+            position: absolute;
+            background-color: #008000; /* Green bubble color */
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #008000; /* Green button color */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .button:hover {
+            background-color: #006400; /* Darker green on hover */
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>SYSTEM PLanner</h1>
+
+        <div class="button-container">
+            <button class="button" onclick="navigateTo('link1.html')">PHYSICS 🚀</button>
+            <button class="button" onclick="navigateTo('link2.html')">CHEMISTRY 🌟</button>
+            <button class="button" onclick="navigateTo('link3.html')">BILOGY 🔬</button>
+            <button class="button" onclick="navigateTo('link4.html')">HISTORY 📚</button>
+            <button class="button" onclick="navigateTo('link5.html')">GEOGRAPHY 🏔️</button>
+            <button class="button" onclick="navigateTo('link6.html')">MATHS π</button>
+        </div>
+    </div>
+
+    <script>
+        function navigateTo(link) {
+            window.location.href = link;
+        }
+
+        document.addEventListener('click', function(event) {
+            createBubble(event.clientX, event.clientY);
+        });
+
+        function createBubble(x, y) {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.style.left = x + 'px';
+            bubble.style.top = y + 'px';
+            document.body.appendChild(bubble);
+
+            // Remove the bubble after a short delay
+            setTimeout(() => {
+                bubble.remove();
+            }, 6000);
+        }
+    </script>
+</body>
+</html>
+
