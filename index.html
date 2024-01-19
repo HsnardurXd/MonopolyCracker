@@ -17,13 +17,6 @@
             min-height: 100vh;
         }
 
-        .matrix {
-            position: absolute;
-            font-size: 20px;
-            white-space: nowrap;
-            user-select: none;
-        }
-
         #container {
             z-index: 1;
             display: flex;
@@ -64,42 +57,30 @@
     </style>
 </head>
 <body>
-    <div id="matrix" class="matrix"></div>
+    <audio id="backgroundSound">
+        <source src="https://commondatastorage.googleapis.com/codeskulptor-demos/pyman_assets/eatedible.ogg" type="audio/mp3">
+        <!-- Replace 'your-audio-file.mp3' with the actual path to your audio file -->
+    </audio>
+    
     <div id="container">
-        <h1>Dynamic Scrolling Page</h1>
+        <h1>Monopoly Cacker</h1>
 
         <div class="button-container">
-            <button class="button" onclick="navigateTo('link1.html')">PHYSICS 🚀</button>
-            <button class="button" onclick="navigateTo('link2.html')">CHEMISTRY 🌟</button>
-            <button class="button" onclick="navigateTo('link3.html')">BILOGY 🔬</button>
-            <button class="button" onclick="navigateTo('link4.html')">HISTORY 📚</button>
-            <button class="button" onclick="navigateTo('link5.html')">GEOGRAPHY 🏔️</button>
-            <button class="button" onclick="navigateTo('link6.html')">MATHS π</button>
-
+            <button class="button" onclick="playSoundAndNavigate('youtube.in')">PHYSICS 🚀</button>
+            <button class="button" onclick="playSoundAndNavigate('https://www.youtube.com/c/rekrap2')">CHEMISTRY 🌟</button>
+            <button class="button" onclick="playSoundAndNavigate('https://docs.google.com/spreadsheets/d/1a0Fwrl_Lxx08dq-onezGnq6qxGhUIMMs1CG37kLtbV8/edit?usp=sharing')">BILOGY 🔬</button>
+            <button class="button" onclick="playSoundAndNavigate('link4.html')">HISTORY 📚</button>
+            <button class="button" onclick="playSoundAndNavigate('link5.html')">GEOGRAPHY 🏔️</button>
+            <button class="button" onclick="playSoundAndNavigate('link6.html')">MATHS π</button>
         </div>
     </div>
 
     <script>
-        function navigateTo(link) {
+        function playSoundAndNavigate(link) {
+            const audio = document.getElementById('backgroundSound');
+            audio.play();
             window.location.href = link;
         }
-
-        // Matrix rain animation
-        const matrixContainer = document.getElementById('matrix');
-        const columns = Array.from({ length: 40 }, () => document.createElement('span'));
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-        columns.forEach((column, index) => {
-            column.style.animationDuration = `${Math.random() * 2 + 1}s`;
-            matrixContainer.appendChild(column);
-
-            Array.from({ length: 50 }).forEach(() => {
-                const char = characters.charAt(Math.floor(Math.random() * characters.length));
-                const charElement = document.createElement('span');
-                charElement.textContent = char;
-                column.appendChild(charElement);
-            });
-        });
     </script>
 </body>
 </html>
